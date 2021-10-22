@@ -1,5 +1,5 @@
 # Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process ; & ./venv/scripts/activate.ps1 ; Set-ExecutionPolicy -ExecutionPolicy Default -Scope Process
-
+*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
