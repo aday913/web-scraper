@@ -12,9 +12,9 @@ class Scraper(object):
     def __init__(self):
 
         test = Emailer()
-        s = HTMLSession()
+        self.session = HTMLSession()
         URL = 'https://smile.amazon.com/dp/0593298683'
-        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 
+        self.header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 
         'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
         'Accept-Language' : 'en-US,en;q=0.5',
         'Accept-Encoding' : 'gzip', 
@@ -36,6 +36,14 @@ class Scraper(object):
             '''.format(results.get_text())
             )
         print('Email sent.')
+
+        def getSite(self, url):
+            '''
+            Given a URL and acceptable header, the method returns the html of a 
+            site that's been parsed via BeautifulSoup
+            '''
+            site = self.session(url, self.header)
+            return BeautifulSoup(site.text, 'html.parser')
 
 if __name__ == '__main__':
     scraper = Scraper()
