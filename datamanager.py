@@ -13,20 +13,25 @@ class DataManager(object):
         # Begin a query
         cursor = connection.cursor()
 
-        # Create our command we want the database to process
-        sql_command = """CREATE TABLE people (  
-        person_number INTEGER PRIMARY KEY,  
-        fname VARCHAR(20),  
-        lname VARCHAR(30),  
-        gender CHAR(1),  
-        joining DATE);"""
+        # Try to create the table "people"
+        try:
+            # Create our command we want the database to process
+            sql_command = """CREATE TABLE people (  
+            person_number INTEGER PRIMARY KEY,  
+            fname VARCHAR(20),  
+            lname VARCHAR(30),  
+            gender CHAR(1),  
+            joining DATE);"""
 
-        # Execute the command that we just made
-        cursor.execute(sql_command)
+            # Execute the command that we just made
+            cursor.execute(sql_command)
+
+        except sqlite3.OperationalError:
+            print('"People" table already made...')
 
         # Add a row to the table we just made
         sql_command = """
-        INSERT INTO people VALUES (2, "Alex", "Day", "M", "2020-11-15");
+        INSERT INTO people VALUES (3, "Alex", "Day", "M", "2020-11-15");
         """
         cursor.execute(sql_command)
 
